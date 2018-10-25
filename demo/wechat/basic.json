@@ -1,0 +1,91 @@
+{
+    "action": "main",
+    "name": "vc cartoon",
+    "subaction": [
+        {
+            "action": "fetcher",
+            "url": "http://xcx.9.cn/app/${0,9}${0,9}${0,9}${0,9}",
+            "headers" : {
+                "Cookie" : "abc=123"
+            },
+            "subaction": [
+                {
+                    "action": "parser",
+                    "subaction": [
+                        {
+                            "action": "shell",
+                            "subaction": [
+                                {
+                                    "action": "parser",
+                                    "attr": "src",
+                                    "setField": "img_logo",
+                                    "rule": ".data .img img"
+                                },
+                                {
+                                    "action": "parser",
+                                    "setField": "name",
+                                    "rule": ".dataList .clear .fl",
+                                    "strip": "true"
+                                },
+                                {
+                                    "action": "parser",
+                                    "setField": "view_count",
+                                    "rule": ".dataList .clear .view-count",
+                                    "strip": "true"
+                                },
+                                {
+                                    "action": "parser",
+                                    "setField": "types",
+                                    "rule": ".dataList p label",
+                                    "pos": 0,
+                                    "strip": "true"
+                                },
+                                {
+                                    "action": "parser",
+                                    "setField": "author",
+                                    "rule": ".detaltext .fl .fl p",
+                                    "pos": 3,
+                                    "strip": "true"
+                                },
+                                {
+                                    "action": "parser",
+                                    "setField": "publish_time",
+                                    "rule": ".detaltext .fl .fl p",
+                                    "pos": 4,
+                                    "strip": "true"
+                                },
+                                {
+                                    "action": "parser",
+                                    "setField": "require",
+                                    "rule": ".detaltext .fl .fl p",
+                                    "pos": 5,
+                                    "strip": "true"
+                                },
+                                {
+                                    "action": "parser",
+                                    "attr": "src",
+                                    "setField": "qrcode",
+                                    "rule": ".detaltext .lite-code img"
+                                },
+                                {
+                                    "action": "parser",
+                                    "setField": "introduction",
+                                    "rule": ".detaltext p",
+                                    "pos": 7,
+                                    "strip": "true"
+                                },
+                                {
+                                    "action": "parser",
+                                    "setField": "img_show",
+                                    "rule": ".detaltext .imgbox ul"
+                                }
+                            ],
+                            "group": "default"
+                        }
+                    ],
+                    "rule": ".detailLeft"
+                }
+            ]
+        }
+    ]
+}
